@@ -65,7 +65,7 @@ The increased noise in the region before the peak arises from a fundamental prop
 
 $$t_p(z) = \int_0^z \frac{dz'}{v(z')}$$
 
-Near the peak where $v(z) \to 0$, the derivative $dt/dz \to \infty$. This means that a fixed timing uncertainty (0.5 ns detector resolution) translates to a much larger spatial uncertainty near the Bragg peak than at the phantom entrance. At the entrance, where the proton travels at approximately 0.5c, timing jitter smears photon origins over a relatively large but sparsely-emitting region. Near the peak, where the proton velocity drops rapidly near the Bragg peak so a fixed timing uncertainty translates to a much larger spatial uncertainty close to the stopping point, degrading spatial resolution precisely where the dose gradient is steepest. This depth-dependent spatial resolution is a fundamental limitation of prompt gamma timing methods.
+Near the peak where $v(z) \to 0$, the derivative $dt/dz \to \infty$. This means that a fixed timing uncertainty (0.5 ns detector resolution) translates to a much larger spatial uncertainty near the Bragg peak than at the phantom entrance. At the entrance, where the proton travels at approximately 0.5c, timing jitter smears photon origins over a relatively large but sparsely-emitting region. The proton velocity drops rapidly near the Bragg peak so a fixed timing uncertainty translates to a much larger spatial uncertainty close to the stopping point, degrading spatial resolution precisely where the dose gradient is steepest. This depth-dependent spatial resolution is a fundamental limitation of prompt gamma timing methods.
 
 
 ## Conclusion
