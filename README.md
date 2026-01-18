@@ -61,12 +61,10 @@ The reconstructed dose profile was compared against the theoretical Bragg curve.
 <img width="915" height="480" alt="Figure_1" src="https://github.com/user-attachments/assets/882039b2-a694-4c98-826e-40d15cede73b" />
 <img width="915" height="480" alt="Figure_2" src="https://github.com/user-attachments/assets/93d78555-f145-4821-8d59-7dd0f489fee5" />
 
-The increased noise in the region before the peak arises from a fundamental property of the time-to-position mapping. As protons approach the Bragg peak, they lose energy rapidly and slow down dramatically. The proton time-of-flight is given by:
-
+The increased noise in the reconstructed profile near the Bragg peak arises from a combination of physical and algorithmic factors. As protons approach the Bragg peak, they lose energy rapidly and slow down. The proton time-of-flight is given by:
 $$t_p(z) = \int_0^z \frac{dz'}{v(z')}$$
 
-Near the peak where $v(z) \to 0$, the derivative $dt/dz \to \infty$. This means that a fixed timing uncertainty (0.5 ns detector resolution) translates to a much larger spatial uncertainty near the Bragg peak than at the phantom entrance. At the entrance, where the proton travels at approximately 0.5c, timing jitter smears photon origins over a relatively large but sparsely-emitting region. The proton velocity drops rapidly near the Bragg peak so a fixed timing uncertainty translates to a much larger spatial uncertainty close to the stopping point, degrading spatial resolution precisely where the dose gradient is steepest. This depth-dependent spatial resolution is a fundamental limitation of prompt gamma timing methods.
-
+Near the peak where $v(z) \to 0$, the derivative $dt/dz \to \infty$, causing a compression in the time-depth mapping: a wide range of depths corresponds to a narrow range of arrival times. This makes it challenging for the back-projection algorithm to distinguish between nearby emission points. Additionally , the higher proton emission rate near the peak produces larger absolute Poisson fluctuations, while the sensitivity correction, which accounts for geometric attenuation effects, amplifies these fluctuations. 
 
 ## Conclusion
 
