@@ -63,11 +63,6 @@ The reconstructed dose profile was compared against the theoretical Bragg curve.
 
 The increased noise near the Bragg peak arises from several factors. First, the high dose deposition rate produces larger absolute Poisson fluctuations (\sqrt{N}), even though relative uncertainty decreases. Second the sensitivity correction, which accounts for geometric (\frac{1/r^{2}) and attenuation effects amplifies these flucatuations more strongly for depths where the detector has lower efficiency. Finally, the concentration of many photon counts within similar arrival times (due to spatial proximity of emission points near the peak) leads to correlated noise when these counts are back-projected across the nearby depth bins.
 
-The increased noise in the reconstructed profile near the Bragg peak arises from a combination of physical and algorithmic factors. As protons approach the Bragg peak, they lose energy rapidly and slow down. The proton time-of-flight is given by:
-$$t_p(z) = \int_0^z \frac{dz'}{v(z')}$$
-
-Near the peak where $v(z) \to 0$, the derivative $dt/dz \to \infty$, causing a compression in the time-depth mapping: a wide range of depths corresponds to a narrow range of arrival times. This makes it challenging for the back-projection algorithm to distinguish between nearby emission points. Additionally , the higher proton emission rate near the peak produces larger absolute Poisson fluctuations, while the sensitivity correction, which accounts for geometric attenuation effects, amplifies these fluctuations. 
-
 ## Conclusion
 
 A computational simulation of prompt gamma timing for Bragg peak localisation in proton therapy was developed and tested. The simulation incorporated a physically motivated forward model including relativistic proton kinematics, gamma attenuation, solid angle effects, and detector timing jitter. A temporal back-projection algorithm was implemented to reconstruct the dose profile from simulated detector measurements. The results demonstrate that prompt gamma timing can successfully localise the Bragg peak under realistic conditions. However, the results exhibit degraded spatial resolution near the Bragg peak due to the nonlinear time-to-position mapping as protons decelerate, a fundamental limitation of timing-based methods
