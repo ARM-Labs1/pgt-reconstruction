@@ -30,11 +30,11 @@ The Bragg curve was modelled as a constant entrance dose combined with a Gaussia
 <img width="850" height="458" alt="tdd" src="https://github.com/user-attachments/assets/03decd53-f706-4ecf-ae34-23510fd3a2bc" />
 
 
-The number of gamma photons emitted at each depth was taken to be proportional to the local dose, scaled by the yield (10⁻⁴ photons per proton) and the number of protons per burst (5 × 10¹¹).
+The number of gamma photons emitted at each depth was taken to be proportional to the local dose, scaled by the yield (10⁻⁴ photons per proton) and the number of protons per burst ($5\times 10^{13}$).
 
 The number of photons reaching the detector from each depth was calculated by accounting for:
 - Solid angle subtended by the detector: $\Omega = A / (4\pi d^2)$
-- Attenuation in tissue: $\exp(-\mu d)$ with $\mu = 0.06$ cm⁻¹
+- Attenuation in tissue: $\exp(-\mu d)$ with $\mu = 0.08$ cm⁻¹
 - Poisson statistics for photon counting
 - Background radiation (modelled as Poisson-distributed noise)
 - Timing jitter from detector resolution (modelled as Gaussian with $\sigma = 0.5$ ns)
@@ -60,6 +60,8 @@ where $\sigma$ is the detector timing resolution. This weighting represents the 
 The reconstructed dose profile was compared against the theoretical Bragg curve. The reconstruction successfully identified the Bragg peak position, demonstrating the feasibility of prompt gamma timing for range verification. However, there was significant noise around the location of the Bragg peak. Despite the noise, however, the peak of the reconstructed curve still matched the theoretical curve.
 <img width="915" height="480" alt="Figure_1" src="https://github.com/user-attachments/assets/882039b2-a694-4c98-826e-40d15cede73b" />
 <img width="915" height="480" alt="Figure_2" src="https://github.com/user-attachments/assets/93d78555-f145-4821-8d59-7dd0f489fee5" />
+
+The increased noise near the Bragg peak arises from several factors. First, the high dose deposition rate produces larger absolute Poisson fluctuations (\sqrt{N}), even though relative uncertainty decreases. Second the sensitivity correction, which accounts for geometric (\frac{1/r^{2}) and attenuation effects amplifies these flucatuations more strongly for depths where the detector has lower efficiency. Finally, the concentration of many photon counts within similar arrival times (due to spatial proximity of emission points near the peak) leads to correlated noise when these counts are back-projected across the nearby depth bins.
 
 The increased noise in the reconstructed profile near the Bragg peak arises from a combination of physical and algorithmic factors. As protons approach the Bragg peak, they lose energy rapidly and slow down. The proton time-of-flight is given by:
 $$t_p(z) = \int_0^z \frac{dz'}{v(z')}$$
