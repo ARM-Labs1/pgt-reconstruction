@@ -32,65 +32,16 @@ tp = ProtonTime(velocities, phantom)                        # Time of flight of 
 
 # For simplicity, we will assume that the number of PGs emitted is roughly proportional to the output of the above function
 
-nPrim = 5e11                                # This is the number of protons per burst
+nPrim = 5e13                                # This is the number of protons per burst
 Y = 1e-4                                    # This is the yield of gamma photons for every proton
 detectorArea = 0.0025                       # m^2 - Area of the detector, will use to find solid angle
 mu = 0.06                                   #cm^-1          Attenuation coefficient for...
-dTR = 0.5e-9                                # 500 ps
+dTR = 0.5e-9                                # 500 ps - Detector timing resolution
+gammaTOF = distMag/3e8                      # Time of flight for gamma photons
 
 
-# We will now simulate a burst of protons going through the phantom
-detectorData = SimulateBurst(phantom, distMag, peak, pPB=nPrim, yiel=Y, dArea=detectorArea, mu=mu, tp= tp, dTRes = dTR)
-
-
-# What he have now to perform the resconstruction is:
-detectorData = detectorData
-tp =  tp
-gammaTOF = distMag/3e8
-
-# Reconstructed data
-reconstruction = Reconstruction(phantom, detectorData, tp, gammaTOF, 0.05e-9, dTR, detectorArea, distMag, (np.exp(-mu*(distMag/10))))
-
-# Now to plot the reconstructed data
-#Plot(phantom, reconstruction, dose)
-
-
-
-# -----------------------------------------------------------------------------------------------------------------------------------------
-# Checking differences in the timing resolution
-sigmas = [0.5e-9, 1.5e-9]
-names = ["0.5ns resolution", "1.5ns resolution"]
-reconData = []
-results = []
-
-for sigma in sigmas:
-    detectorData = SimulateBurst(phantom, distMag, peak, pPB=nPrim, yiel=Y, dArea=detectorArea, mu=mu, tp= tp, dTRes = sigma)
-    reconstruction = Reconstruction(phantom, detectorData, tp, gammaTOF, 0.05e-9, sigma, detectorArea, distMag, (np.exp(-mu*(distMag/10))))
-    reconData.append(reconstruction)
-
-    peakPosition = phantom[np.argmax(reconstruction)]
-    peakError = abs(peakPosition-150)
-    results.append({'sigma (ns)': sigma*1e-9, 'error (mm)': peakError})
-
-plt.figure()
-plt.plot(phantom, dose, label = "Theoretical dose distribution")
-
-plt.grid()
-plt.xlabel("Tissue Depth (mm)")
-plt.ylabel("Relative Dose")
-
-'''
-for i, array in enumerate(reconData):
-    plt.plot(phantom, array/np.max(array), label = names[i])
-'''
-
-plt.legend()
-plt.show()
-
-
-
-pPB = [1e13]
-names = ["1e13 photons"]
+pPB = [5e13]
+names = ["5e13 photons"]
 reconData = []
 results = []
 
@@ -101,7 +52,7 @@ for burst in pPB:
 
     peakPosition = phantom[np.argmax(reconstruction)]
     peakError = abs(peakPosition-150)
-    results.append({'protons': pPB, 'error (mm)': peakError})
+    results.append({'protons': pPB, 'error (mm)': str(peakError)})
 
 plt.figure()
 plt.plot(phantom, dose, label = "Theoretical dose distribution")
@@ -115,3 +66,5 @@ for i, array in enumerate(reconData):
 
 plt.legend()
 plt.show()
+
+print(results)
