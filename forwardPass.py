@@ -195,10 +195,12 @@ def SimulateBurst(phantom, distMag, peak, pPB, yiel, dArea, mu, tp, dTRes):
 
     # Calculates the time of flight and adds with the proton time of flight to get the total measured time
     yTOF = distMag/3e8
-    measuredTime = yTOF + tp
+    baseTime = yTOF + tp
+    measuredTime=np.repeat(baseTime, k)
+    #measuredTime = yTOF + tp
 
     # Adds timing jitter to the measured time, simulating as a normal distribution
     timingJitter = np.random.normal(0, dTRes, size=measuredTime.shape)
     measuredTime += timingJitter
 
-    return np.repeat(measuredTime, k)
+    return measuredTime

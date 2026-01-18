@@ -25,7 +25,7 @@ dose /= np.max(dose)                        # Normalise the curve
 # In order to find the the time of flight, we'll integrate over the reciprocal of the velocities between 0 and a certain depth
 # And we'll integrate for every z value
 
-velocities = velocities(phantom, 145.722222)                # Retrieving the velocities of the proton at each depth
+velocities = velocities(phantom, 145.7)                     # Retrieving the velocities of the proton at each depth
 tp = ProtonTime(velocities, phantom)                        # Time of flight of a proton at each depth
 
 
@@ -35,7 +35,7 @@ tp = ProtonTime(velocities, phantom)                        # Time of flight of 
 nPrim = 5e13                                # This is the number of protons per burst
 Y = 1e-4                                    # This is the yield of gamma photons for every proton
 detectorArea = 0.0025                       # m^2 - Area of the detector, will use to find solid angle
-mu = 0.06                                   #cm^-1          Attenuation coefficient for...
+mu = 0.08                                   #cm^-1          Attenuation coefficient for...
 dTR = 0.5e-9                                # 500 ps - Detector timing resolution
 gammaTOF = distMag/3e8                      # Time of flight for gamma photons
 
@@ -47,6 +47,9 @@ results = []
 
 for burst in pPB:
     detectorData = SimulateBurst(phantom, distMag, peak, pPB=burst, yiel=Y, dArea=detectorArea, mu=mu, tp= tp, dTRes = dTR)
+    dTR = 0.7e-9
+    mu = 0.087
+    detectorArea = 0.0050
     reconstruction = Reconstruction(phantom, detectorData, tp, gammaTOF, 0.05e-9, dTR, detectorArea, distMag, (np.exp(-mu*(distMag/10))))
     reconData.append(reconstruction)
 

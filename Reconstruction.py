@@ -37,7 +37,8 @@ def Reconstruction(phantom, detectorData, tp, gammaTOF, tBinWidth, sigma, dArea,
 
         tDiffs = np.abs(tExpected-tBin)                 # The difference between the bin's centre and each expected time value is calculated
 
-        # Gaussian weighting function calculates weight for each spacial bin - bins who are close to the matched time have higher weighting 
+        # Gaussian weighting function calculates weight for each spacial bin - bins who are close to the matched time have higher weighting
+ 
         weights = np.exp(-tDiffs**2 / (2*sigma**2))         
         weights = weights/np.sum(weights)               # Normalising the weights
 
