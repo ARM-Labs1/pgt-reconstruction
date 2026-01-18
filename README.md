@@ -61,7 +61,7 @@ The reconstructed dose profile was compared against the theoretical Bragg curve.
 <img width="915" height="480" alt="Figure_1" src="https://github.com/user-attachments/assets/882039b2-a694-4c98-826e-40d15cede73b" />
 <img width="915" height="480" alt="Figure_2" src="https://github.com/user-attachments/assets/93d78555-f145-4821-8d59-7dd0f489fee5" />
 
-The increased noise near the Bragg peak arises from several factors. First, the high dose deposition rate produces larger absolute Poisson fluctuations ($\sqrt{N}$), even though relative uncertainty decreases. Second the sensitivity correction, which accounts for geometric ($\frac{1/r^{2}$) and attenuation effects amplifies these flucatuations more strongly for depths where the detector has lower efficiency. Finally, the concentration of many photon counts within similar arrival times (due to spatial proximity of emission points near the peak) leads to correlated noise when these counts are back-projected across the nearby depth bins.
+The increased noise near the Bragg peak arises from several factors. First, the high dose deposition rate produces larger absolute Poisson fluctuations $\sqrt{N}$, even though relative uncertainty decreases. Second the sensitivity correction, which accounts for geometric ($1/r^{2}$) and attenuation effects amplifies these flucatuations more strongly for depths where the detector has lower efficiency. Finally, the concentration of many photon counts within similar arrival times (due to spatial proximity of emission points near the peak) leads to correlated noise when these counts are back-projected across the nearby depth bins.
 
 ## Conclusion
 
