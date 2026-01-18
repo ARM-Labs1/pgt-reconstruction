@@ -62,6 +62,11 @@ def CreateBraggCurve (depths, braggPosition, peakHeight = 1.0, entranceDose = 0.
     '''
     Function to create the Bragg curve using a gaussian distribution
 
+    This function combines three components in order to create an approximation of the Bragg curve
+    1. A Constant plateu for the enterence region - constant low dose of 0.3
+    2. A Gaussian distribution centrered at the peak height for the peak
+    3. An exponential falloff past the Bragg peak
+
     ARGUMENTS:
     depths - array of depths from x=0, represents the bins in the phantom model
     braggPosition - (mm) position of bragg peak
@@ -81,12 +86,12 @@ def CreateBraggCurve (depths, braggPosition, peakHeight = 1.0, entranceDose = 0.
     peak = peakHeight * np.exp(-(depths-braggPosition)**2 / (2*peakWidth**2))
 
     # Apply rapid fall-off after peak
-    falloffMask = depths > braggPosition
+    falloffMask = depths > braggPosition            # Falloff mask only selects depths past the Bragg peak                                              
     falloff = np.exp(-(depths[falloffMask] - braggPosition)/(falloffSteepness))
 
     # Combine all regions
     dose = entrance + peak
-    dose[falloffMask] = (entrance[falloffMask] + peak[falloffMask]) * falloff
+    dose[falloffMask] = (entrance[falloffMask] + peak[falloffMask]) * falloff        # Drop off values past the peak
 
     return dose
 

@@ -22,9 +22,10 @@ def Reconstruction(phantom, detectorData, tp, gammaTOF, tBinWidth, sigma, dArea,
 
     tExpected = tp + gammaTOF                       # Calculating the expected times, since we know the gamma and proton time-of-flight  
 
-    # Binning the values in detectorData, where bins are defined by tBinWidth
+    # Grouping values in detectorData that fall into specific ranges which are the bins, where the bins are defined by tBinWidth
+    # tCounts - how many photons fell into each bin
     tCounts, tBinEdges = np.histogram(detectorData, bins=np.arange(detectorData.min(), detectorData.max() + tBinWidth, tBinWidth))
-    tBinCentres = (tBinEdges[:-1] + tBinEdges[1:])/2
+    tBinCentres = (tBinEdges[:-1] + tBinEdges[1:])/2    #Specific time value representing each bin
 
     # Initialise a variable to hold the reconstructed data with the same size as the phantom array
     reconstructed = np.zeros_like(phantom, dtype=float)
@@ -36,8 +37,7 @@ def Reconstruction(phantom, detectorData, tp, gammaTOF, tBinWidth, sigma, dArea,
 
         tDiffs = np.abs(tExpected-tBin)                 # The difference between the bin's centre and each expected time value is calculated
 
-        # Gaussian weighting function calculates weight for each spacial bin - bins who are close to the matched time have higher weighting
-        # This is the characteristic 'smearing' done by back-projection algorithms 
+        # Gaussian weighting function calculates weight for each spacial bin - bins who are close to the matched time have higher weighting 
         weights = np.exp(-tDiffs**2 / (2*sigma**2))         
         weights = weights/np.sum(weights)               # Normalising the weights
 
