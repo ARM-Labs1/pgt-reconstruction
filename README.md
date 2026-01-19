@@ -20,7 +20,7 @@ The simulation consisted of both a forward model, simulating the PG emission, an
 
 A one-dimensional water phantom of length 300 mm was used, with a detector of area 25 cm² placed 50 mm laterally from the beam axis and 50 mm beyond the end of the phantom. The Bragg peak was set at a depth of 150 mm, corresponding to an initial proton energy of approximately 145.7 MeV.
 
-Proton velocities at each depth were calculated using relativistic kinematics:
+Proton velocities at each depth were calculated using relativistic kinematics $v=\beta c$ where:
 
 $$\beta = \sqrt{1 - \left(\frac{m_p c^2}{E + m_p c^2}\right)^2}$$
 
