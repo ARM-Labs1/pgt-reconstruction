@@ -30,7 +30,7 @@ The Bragg curve was modelled as a constant entrance dose combined with a Gaussia
 <img width="850" height="458" alt="tdd" src="https://github.com/user-attachments/assets/03decd53-f706-4ecf-ae34-23510fd3a2bc" />
 
 
-The number of gamma photons emitted at each depth was taken to be proportional to the local dose, scaled by the yield (10⁻⁴ photons per proton) and the number of protons per burst ($5\times 10^{13}$).
+The number of gamma photons emitted at each depth was taken to be proportional to the local dose, scaled by the yield (10⁻⁴ photons per proton) and the number of protons per burst ($5\times 10^{13}$). The estimate of $10^{-4}$ photons per proton is a conservative one, in reality, the photon yield is not constant.
 
 The number of photons reaching the detector from each depth was calculated by accounting for:
 - Solid angle subtended by the detector: $\Omega = A / (4\pi d^2)$
