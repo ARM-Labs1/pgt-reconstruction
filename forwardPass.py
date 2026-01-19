@@ -124,8 +124,8 @@ def velocities(phantom, initialE):
         vel = np.append(vel, velocity)
 
     # Sets the initial velocities at 0mm and 1mm depth to the initial velocity
-    vel[0] = 0.528 * 3e8
-    vel[1] = 0.528 * 3e8
+    vel[0] = 0.662 * 3e8
+    vel[1] = 0.662 * 3e8
 
     return vel
 

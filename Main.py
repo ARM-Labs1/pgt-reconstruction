@@ -47,10 +47,10 @@ results = []
 
 for burst in pPB:
     detectorData = SimulateBurst(phantom, distMag, peak, pPB=burst, yiel=Y, dArea=detectorArea, mu=mu, tp= tp, dTRes = dTR)
-    dTR = 0.7e-9
+    dTR = 0.1e-9
     mu = 0.087
     detectorArea = 0.0050
-    reconstruction = Reconstruction(phantom, detectorData, tp, gammaTOF, 0.05e-9, dTR, detectorArea, distMag, (np.exp(-mu*(distMag/10))))
+    reconstruction = Reconstruction(phantom, detectorData, tp, gammaTOF, 0.3e-9, dTR, detectorArea, distMag, (np.exp(-mu*(distMag/10))))
     reconData.append(reconstruction)
 
     peakPosition = phantom[np.argmax(reconstruction)]
@@ -58,7 +58,8 @@ for burst in pPB:
     results.append({'protons': pPB, 'error (mm)': str(peakError)})
 
 plt.figure()
-plt.plot(phantom, dose, label = "Theoretical dose distribution")
+plt.plot(phantom, dose, linestyle="--", label = "Theoretical dose distribution",)
+plt.title("Normalised results")
 
 plt.grid()
 plt.xlabel("Tissue Depth (mm)")
